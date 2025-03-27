@@ -75,7 +75,7 @@ VALUES
 (4, 'https://ejemplo.com/imagen3.jpg'),
 (7, 'https://ejemplo.com/imagen4.jpg'),
 (8, 'https://ejemplo.com/imagen5.jpg');
-
+SELECT * FROM Imagen;
 
 INSERT INTO Likes (id_usuario, id_publicacion)
 VALUES 
@@ -89,6 +89,9 @@ VALUES
 (8, 9),
 (9, 10),
 (10, 1);
+SELECT * FROM Likes;
+
+SELECT * FROM Seguir;
 
 INSERT INTO Seguir (id_seguidor, id_seguido)
 VALUES 
@@ -98,7 +101,19 @@ VALUES
 (2, 5),
 (3, 6),
 (3, 7),
-(4, 8),
-(5, 9),
-(6, 10),
+(4, 7),
+(5, 7),
+(6, 1),
 (7, 1);
+
+
+SELECT COUNT(*) AS cantidad_seguidores
+FROM Seguir
+WHERE id_seguido = 7;
+
+
+SELECT U.username AS nombre_seguidor
+FROM Seguir S
+JOIN Usuario U ON S.id_seguidor = U.id_usuario
+WHERE S.id_seguido = 7;
+
