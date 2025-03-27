@@ -37,6 +37,8 @@ CREATE TABLE Comentario (
     id_publicacion INT NOT NULL, -- Publicación comentada
     comentario TEXT NOT NULL,
     created_at DATETIME DEFAULT GETDATE(),
+	id_Comentario_r INT NULL,  -- Para la relación recursiva
+	FOREIGN KEY (id_Comentario_r) REFERENCES Comentario(id_comentario),
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
     FOREIGN KEY (id_publicacion) REFERENCES Publicacion(id_publicacion)
 );
@@ -56,10 +58,10 @@ CREATE TABLE Imagen (
 END
 
 GO
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'DarLikes')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Likes')
 BEGIN
 -- Tabla Dar Likes (Relación N:M entre Usuario y Publicación)
-CREATE TABLE DarLikes (
+CREATE TABLE Likes (
     id_like INT PRIMARY KEY IDENTITY(1,1),
     id_usuario INT NOT NULL,
     id_publicacion INT NOT NULL,
@@ -82,3 +84,8 @@ CREATE TABLE Seguir (
     FOREIGN KEY (id_seguido) REFERENCES Usuario(id_usuario) 
 );
 END
+
+GO
+-- Eliminar la tabla DarLikes si existe
+DROP TABLE IF EXISTS DarLikes;
+DROP TABLE IF EXISTS Comentario;

@@ -36,9 +36,6 @@ VALUES
 ('user25', 'user25@example.com', '456123789', 'Italia', 'Via Roma 333');
 
 
-SELECT * FROM Usuario;
-
-
 --- Publicaciones
 INSERT INTO Publicacion (id_usuario, contenido)
 VALUES 
@@ -55,20 +52,20 @@ VALUES
 
 SELECT * FROM Publicacion;
 
--- Comentario
-INSERT INTO Comentario (id_usuario, id_publicacion, comentario)
-VALUES 
-(2, 1, '¡Bienvenido a la red social!'),
-(3, 1, '¡Hola! Espero que disfrutes la plataforma.'),
-(4, 2, 'Esa puesta de sol se ve increíble.'),
-(5, 3, 'Blockchain cambiará muchas industrias.'),
-(6, 4, '¿Podrías compartir la receta?'),
-(7, 5, 'Es un libro increíble, te atrapará desde el inicio.'),
-(8, 6, 'Voy a ver tu video ahora mismo.'),
-(9, 7, 'Me encantaría visitar la selva amazónica algún día.'),
-(10, 8, 'Totalmente de acuerdo, la constancia es clave.'),
-(1, 9, 'Gran reflexión, vivir el presente es lo más importante.');
 
+SELECT * FROM Comentario;
+-- Comentario
+-- Inserción de Comentarios con relación recursiva
+INSERT INTO Comentario (id_usuario, id_publicacion, comentario, id_Comentario_r)
+VALUES 
+(2, 1, '¡Bienvenido a la red social!', NULL),  -- Comentario principal
+(3, 1, '¡Hola! Espero que disfrutes la plataforma.', 1), -- Responde al comentario 1
+(4, 1, 'No me gusta.',1),
+(4, 2, 'Esa puesta de sol se ve increíble.', NULL), 
+(5, 2, 'Esa puesta de sol se ve increíble.', 4),
+(5, 3, 'Blockchain cambiará muchas industrias.', NULL);
+
+SELECT * FROM Comentario;
 
 -- Imagen
 INSERT INTO Imagen (id_publicacion, url)
@@ -80,7 +77,7 @@ VALUES
 (8, 'https://ejemplo.com/imagen5.jpg');
 
 
-INSERT INTO DarLikes (id_usuario, id_publicacion)
+INSERT INTO Likes (id_usuario, id_publicacion)
 VALUES 
 (1, 2),
 (2, 3),
