@@ -21,6 +21,7 @@ ORDER BY p.created_at DESC;
 -- Dimension comentarios
 SELECT
     c.id_publicacion,
+	c.id_comentario,
     uc.username AS comentarista,
     c.comentario AS comentario_padre,
     ur.username AS replicador,
@@ -46,6 +47,7 @@ ORDER BY c.id_publicacion;
 
 SELECT
     p.id_publicacion,
+	l.id_like,
     p.contenido,
     u.username AS liker
 FROM Likes l
@@ -87,22 +89,23 @@ SET created_at = DATEADD(
 
 
 SELECT 
-    fecha,
-    YEAR(fecha) AS anio,
-    MONTH(fecha) AS mes,
-    DAY(fecha) AS dia
+    T.fecha,
+    T.tipo,
+    YEAR(T.fecha) AS anio,
+    MONTH(T.fecha) AS mes,
+    DAY(T.fecha) AS dia
 FROM (
-    SELECT DISTINCT CAST(created_at AS DATE) AS fecha FROM Usuario
+    SELECT DISTINCT CAST(created_at AS DATE) AS fecha, 'USUARIO'     AS tipo FROM Usuario
     UNION
-    SELECT DISTINCT CAST(created_at AS DATE) AS fecha FROM Publicacion
+    SELECT DISTINCT CAST(created_at AS DATE) AS fecha, 'PUBLICACION' AS tipo FROM Publicacion
     UNION
-    SELECT DISTINCT CAST(created_at AS DATE) AS fecha FROM Comentario
+    SELECT DISTINCT CAST(created_at AS DATE) AS fecha, 'COMENTARIO'  AS tipo FROM Comentario
     UNION
-    SELECT DISTINCT CAST(created_at AS DATE) AS fecha FROM Likes
+    SELECT DISTINCT CAST(created_at AS DATE) AS fecha, 'LIKE'        AS tipo FROM Likes
     UNION
-    SELECT DISTINCT CAST(created_at AS DATE) AS fecha FROM Seguir
-) AS Fechas
-ORDER BY fecha;
+    SELECT DISTINCT CAST(created_at AS DATE) AS fecha, 'SEGUIR'      AS tipo FROM Seguir
+) AS T
+ORDER BY T.fecha;
 
 
 -- Poblar fact_interaccion
@@ -112,32 +115,35 @@ SELECT
     id_usuario, 
     id_publicacion, 
     id_comentario, 
-    NULL, 
-    NULL,
-    CONVERT(INT, CONVERT(VARCHAR(8), created_at, 112)) AS fecha_id,
-    'COMMENT' AS tipo_interaccion,
+    NULL AS like_id, 
+    NULL AS usuario_followed_id,
+    CAST(created_at AS DATETIME) AS fecha,
+    'COMENTARIO' AS tipo_interaccion,
     1 AS cantidad
 FROM BD_redes_sociales.dbo.Comentario;
+
+SELECT created_at FROM Comentario;
+
 -- likes
 SELECT 
     id_usuario, 
     id_publicacion, 
-    NULL, 
+    NULL as id_comentario, 
     id_like, 
-    NULL,
-    CONVERT(INT, CONVERT(VARCHAR(8), created_at, 112)) AS fecha_id,
+    NULL as usuario_followed_id,
+    CAST(created_at AS DATETIME) AS fecha, 
     'LIKE' AS tipo_interaccion,
     1 AS cantidad
 FROM BD_redes_sociales.dbo.Likes;
 -- Seguidores
 SELECT
     id_seguidor, 
-    NULL, 
-    NULL, 
-    NULL, 
+    NULL id_publicacion, 
+    NULL id_comentario, 
+    NULL id_like, 
     id_seguido,
-    CONVERT(INT, CONVERT(VARCHAR(8), created_at, 112)) AS fecha_id,
-    'FOLLOW' AS tipo_interaccion,
+    CAST(created_at AS DATETIME) AS fecha, -- 
+    'SEGUIR' AS tipo_interaccion,
     1 AS cantidad
 FROM BD_redes_sociales.dbo.Seguir;
 
