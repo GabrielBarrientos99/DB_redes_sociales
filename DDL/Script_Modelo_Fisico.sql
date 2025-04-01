@@ -1,3 +1,5 @@
+
+DROP DATABASE BD_redes_sociales;
 CREATE DATABASE BD_redes_sociales;
 GO
 USE BD_redes_sociales;
@@ -21,7 +23,7 @@ BEGIN
 CREATE TABLE Publicacion (
     id_publicacion INT PRIMARY KEY IDENTITY(1,1),
     id_usuario INT NOT NULL, -- Relación con Usuario
-    contenido TEXT NOT NULL,
+    contenido NVARCHAR(MAX) NOT NULL,
     created_at DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) 
 );
@@ -35,7 +37,7 @@ CREATE TABLE Comentario (
     id_comentario INT PRIMARY KEY IDENTITY(1,1),
     id_usuario INT NOT NULL, -- Usuario que comenta
     id_publicacion INT NOT NULL, -- Publicación comentada
-    comentario TEXT NOT NULL,
+    comentario NVARCHAR(MAX) NOT NULL,
     created_at DATETIME DEFAULT GETDATE(),
 	id_Comentario_r INT NULL,  -- Para la relación recursiva
 	FOREIGN KEY (id_Comentario_r) REFERENCES Comentario(id_comentario),
