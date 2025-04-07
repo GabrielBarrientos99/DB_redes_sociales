@@ -175,6 +175,7 @@ FOREIGN KEY (id_seguido) REFERENCES Usuario(id_usuario)
 
 ![image](https://github.com/user-attachments/assets/51905ff9-be29-4379-be8b-bc1c550f8e8c)
 
+![image](https://github.com/user-attachments/assets/456fce90-cfab-4575-9771-b41d74623665)
 
 
 
