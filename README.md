@@ -138,7 +138,7 @@ FOREIGN KEY (id_seguido) REFERENCES Usuario(id_usuario)
 
 ![image](https://github.com/user-attachments/assets/727f842f-398c-4ecc-a80f-5f5d6187af20)
 
-### Explrando el cubo
+### Explorando el cubo
 
 #### Total de comentarios realizados
 
@@ -164,6 +164,16 @@ FOREIGN KEY (id_seguido) REFERENCES Usuario(id_usuario)
 
 ![image](https://github.com/user-attachments/assets/7a47fa5d-8355-4445-b82c-cb6d713d99a9)
 
+## Indicadores que se podrian analizar
+
+- Likes por usuario y mes
+- Comentarios por país
+- Duración de seguimientos
+- Tasa de respuesta (porcentaje de comentarios con respuesta por creador)
+
+# Reporting Services
+
+![image](https://github.com/user-attachments/assets/51905ff9-be29-4379-be8b-bc1c550f8e8c)
 
 
 
