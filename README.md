@@ -103,3 +103,70 @@ FOREIGN KEY (id_seguido) REFERENCES Usuario(id_usuario)
 
 # Modelo Dimensional
 
+![image](https://github.com/user-attachments/assets/604216d2-f9dc-4e14-9306-72afe391242a)
+
+# Poblando Modelo Dimensional
+
+## Flujo general
+
+![image](https://github.com/user-attachments/assets/6f6b9481-6009-4179-aa95-892888abecd1)
+
+## Poblando las dimensiones
+
+![image](https://github.com/user-attachments/assets/fd9257fb-f117-4855-9c83-98a8414327ad)
+
+## Poblando la tabla FactLikes
+
+![image](https://github.com/user-attachments/assets/9707ccc5-ec9f-4301-8d41-7b74b7510568)
+
+## Poblando la tabla FactComentarios
+
+![image](https://github.com/user-attachments/assets/a08c93df-0020-4e16-bf9b-793876881a86)
+
+## Poblando la tabla FactSeguimientos
+
+![image](https://github.com/user-attachments/assets/ff1f6741-838e-4479-9fd5-595623a05010)
+
+
+# Analisis Services
+
+## Vista del origen de datos
+
+![image](https://github.com/user-attachments/assets/44bb655c-8a29-4159-95bc-901f1c71d69d)
+
+## Vista del cubo
+
+![image](https://github.com/user-attachments/assets/727f842f-398c-4ecc-a80f-5f5d6187af20)
+
+### Explrando el cubo
+
+#### Total de comentarios realizados
+
+![image](https://github.com/user-attachments/assets/d94538b1-8546-4500-bb2c-2e39178dabdb)
+
+#### Total de replicas realizadas
+
+![image](https://github.com/user-attachments/assets/b349d99b-d169-4544-9685-b5673485b950)
+
+#### Cantidad de Likes
+
+![image](https://github.com/user-attachments/assets/1edf5241-750c-4db2-8d99-c9f34c2802e7)
+
+### Cantidad de Likes y Comentarios por Usuario
+
+![image](https://github.com/user-attachments/assets/a2596e0b-03c0-4ef0-a8d5-2f89149dec3e)
+
+### Cantidad de Likes y Comentarios por País
+
+![image](https://github.com/user-attachments/assets/c694d909-bb71-4c1b-88a3-de7240f819d7)
+
+### Cantidad de Likes y Comentarios Replica por País
+
+![image](https://github.com/user-attachments/assets/7a47fa5d-8355-4445-b82c-cb6d713d99a9)
+
+
+
+
+
+
+
